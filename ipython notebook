@@ -1,0 +1,4 @@
+source set.env.sh -- na zdalnym komputerze - chyba zrobilem
+odpalic notebooka na zdalnym
+
+ssh -L 34567:localhost:34567 -l i258352 -t tryglaw.ii.uni.wroc.pl ssh  -L 34567:localhost:34567 -t hera ssh -L 34567:localhost:8888 -t lab137-06
