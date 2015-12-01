@@ -1,9 +1,0 @@
-#Przeszukiwnie plików pod kątem zawartości
-
-grep -rl "szukana fraza" /ścieżka/do/katalogu(pliku)
-
--r (w głąb)
--l wypisuje tylko nazwy
--i not casesensitive
--n wupisuje linie
-
