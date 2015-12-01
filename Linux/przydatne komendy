@@ -7,3 +7,8 @@ grep -rl "szukana fraza" /ścieżka/do/katalogu(pliku)
 -i not casesensitive
 -n wupisuje linie
 
+# kopiowanie biblioteki z jakiejs lokalizacji do usrlib
+
+sudo find ../../.. -name "libIL.so" -print0 | xargs -0 sudo cp --target-directory=/usr/lib
+
+

@@ -1,11 +1,11 @@
 // Include GLFW
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 extern GLFWwindow* window; // The "extern" keyword here is to access the variable "window" declared in tutorialXXX.cpp. This is a hack to keep the tutorials simple. Please avoid this.
 
 // Include GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-using namespace glm;
+//using namespace glm;
 
 #include "controls.hpp"
 
@@ -35,7 +35,7 @@ float initialFoV = 45.0f;
 
 float mouseSpeed = 0.005f;
 
-double xpos = 0, ypos = 0, zpos = 2.5, speed = 1.03, zoom = 1.01;
+double xpos = 0, ypos = 0, zpos = 2.5, speed = 0.03, zoom = 1.01;
 
 void computeMatricesFromInputs(){
 
