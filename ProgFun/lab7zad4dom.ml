@@ -35,7 +35,7 @@ module IntOrder: ORDER with type t = int =
 								  if s1>s2 then GREATER else EQUAL
 					  end;;
 
-module Dictionary (Key: ORDER): DICTIONARY =
+module Dictionary (Key: ORDER): DICTIONARY with type key=Key.t =
 struct
   type key = Key.t
   type 'a t = (key * 'a) list
@@ -45,7 +45,7 @@ struct
     match dic with
       [] -> [(key1, el)]
     | ((k, e)::t) -> match Key.compare key1 k with
-		       LESS-> (key1,el)::dic
+		       LESS-> (key1,el)::(k, e)::t
 		     | EQUAL->raise(DuplicatedKey k) 
 		     | GREATER -> (k,e)::(insert t (key1,el))
 
@@ -53,17 +53,17 @@ struct
     match dic with
       [] -> None
     | ((k, e)::t) -> match Key.compare key k with
-		       LESS-> lookup t key
+		       LESS-> None
 		     | EQUAL-> Some e 
-		     | GREATER -> None
+		     | GREATER ->  lookup t key
 
   let rec delete dic key =
       match dic with
       [] -> []
     | ((k, e)::t) -> match Key.compare key k with
-		       LESS-> (k,e) :: delete t key
+		       LESS-> dic
 		     | EQUAL-> t
-		     | GREATER -> (k,e):: t
+		     | GREATER -> (k,e) :: delete t key
 
   let rec update dic (key,el) =
     match dic with
@@ -77,3 +77,28 @@ end;;
 
 module SDict = Dictionary(StringOrder);;
 module IDict = Dictionary(IntOrder);;
+
+let ( <| ) d (key,value) = SDict.insert d (key,value);;
+
+let dict = SDict.empty();;
+let dict = dict <|("kot","trot")
+<| ("slon","elephant")
+<| ("pies","dog")
+<| ("ptak","bird");;
+SDict.lookup dict "pies";;
+SDict.lookup dict "papuga";;
+let dict = dict <| ("papuga","parrot");;
+SDict.lookup dict "papuga";;
+
+
+let ( <| ) d (key,value) = IDict.insert d (key,value);;
+
+let dict = IDict.empty();;
+let dict = dict <|(1,"trot")
+<| (2,"elephant")
+<| (3,"dog")
+<| (4,"bird");;
+IDict.lookup dict 3;;
+IDict.lookup dict 5;;
+let dict = dict <| (5 ,"parrot");;
+IDict.lookup dict 5;;

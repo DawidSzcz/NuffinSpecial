@@ -1,3 +1,6 @@
+(*Dawid Szczyrk*)
+
+(*3*)
 type order = LESS | EQUAL | GREATER;;
 
 module type ORDER = sig 
@@ -105,6 +108,8 @@ let rec makeTreeFromList list =
 
 let x = makeTreeFromList (List.rev [17; 10; 6; 14; 11; 26; 20; 34; 31; 37]);;
 
+(*przed dodaniem *)
 IDict.printPrefixTree x;;
 
+(*po dodanu*)
 IDict.printPrefixTree (IDict.insert x (18, "sth"));;

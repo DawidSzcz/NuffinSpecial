@@ -1,0 +1,8 @@
+import Data.Char
+
+print_board [] = putChar '\n'
+print_board (x:xs) = putChar (intToDigit x) >> putStr ": " >> print_stars x >> print_board xs
+
+print_stars 0 = putChar '\n'
+print_stars n = putChar '*' >> print_stars (n-1) 
+
