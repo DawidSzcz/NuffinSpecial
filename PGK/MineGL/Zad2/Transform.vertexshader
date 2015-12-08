@@ -4,9 +4,10 @@ layout (location = 1) in vec2 texCoord;
 
 out vec2 TexCoord;
 uniform mat4 transform;
+uniform float cos;
 
 void main()
 {
-    gl_Position = transform * vec4(position, 0.0f, 1.0f);
+    gl_Position = transform * vec4(cos*position.x, position.y, 0.0f, 1.0f);
 	TexCoord = texCoord;
 }
