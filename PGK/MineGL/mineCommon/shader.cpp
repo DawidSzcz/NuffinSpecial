@@ -14,14 +14,16 @@ using namespace std;
 #include "shader.hpp" 
 
 GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
-
+std::cout<<"tutut\n";
 	// Create the shaders
 	GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+	std::cout<<"tutut\n";
 	GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-
+std::cout<<"tutut\n";
 	// Read the Vertex Shader code from the file
 	std::string VertexShaderCode;
 	std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
+	std::cout<<"tutut\n";
 	if(VertexShaderStream.is_open()){
 		std::string Line = "";
 		while(getline(VertexShaderStream, Line))

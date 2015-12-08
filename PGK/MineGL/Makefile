@@ -1,16 +1,20 @@
 LIBS= -lglfw3 -lGL -lGLU -lGLEW -lX11 -lXxf86vm -lpthread -lXrandr -lXi -lIL
-FLAGS= --static -std=gnu++11 -O3  -Iinclude -Llib -ImineCommon
+FLAGS= -std=gnu++11 -O3 -ImineCommon -Iinclude
 
-all: clean Zad1 Zad2 Zad5 picture 
+all: clean Zad1 Zad2 Zad3 picture 
 
 train: clean
 	g++ ${FLAGS} -o train train.cpp ${LIBS} ${COMMON}
 
-Zad5: shader.o Zad3utils.o
-	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o Zad3utils.o ${LIBS} ${COMMON}
 
-Zad1: shader.o controls.o 
-	g++ ${FLAGS} -o Zad1/Zad1 Zad1/Zad1.cpp shader.o controls.o  ${LIBS} ${COMMON} # dlaczego nie $<
+Zad1: shader controls
+	g++ ${FLAGS} -o Zad1/Zad1 Zad1/Zad1.cpp shader.o controls.o  ${LIBS} # dlaczego nie $<
+Zad2: shader controls2 Zad2utils
+	g++ ${FLAGS} -o Zad2/Zad2 Zad2/Zad2.cpp shader.o controls2.o utils.o ${LIBS}
+Zad3: shader Zad3utils controls2
+	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o Zad3utils.o controls2.o ${LIBS} 
+
+
 
 simple: textfile.o
 	g++ ${FLAGS} -o SimpleTexture/simple SimpleTexture/simple.cpp textfile.o ${LIBS} ${COMMON} # dlaczego nie $<
@@ -18,27 +22,26 @@ simple: textfile.o
 picture: 
 	g++ ${FLAGS} -o Zad2/picture Zad2/picture.cpp ${LIBS} ${COMMON} # dlaczego nie $<
 
-Zad2: shader.o controls2.o utils.o
-	g++ ${FLAGS} -o Zad2/Zad2 Zad2/Zad2.cpp shader.o controls2.o utils.o ${LIBS} ${COMMON} # dlaczego nie $<
-
-shader.o:
+shader:
 	g++ ${FLAGS} mineCommon/shader.cpp -c ${LIBS}
 
-utils.o:
-	g++ ${FLAGS} mineCommon/utils.cpp -c ${LIBS}
+Zad2utils:
+	g++ ${FLAGS} Zad2/utils.cpp -c ${LIBS}
 
-Zad3utils.o:
+Zad3utils:
 	g++ ${FLAGS} mineCommon/Zad3utils.cpp -c ${LIBS}
 
-textfile.o:
+textfile:
 	g++ ${FLAGS} SimpleTexture/textfile.cpp -c ${LIBS}
 
 
-controls.o:
+controls:
 	g++ ${FLAGS} mineCommon/controls.cpp -c ${LIBS}
 
-controls2.o:
+controls2:
 	g++ ${FLAGS} mineCommon/controls2.cpp -c ${LIBS}
+
+.PHONY: Zad1 Zad2 Zad3
 
 clean:
 	touch sth.o && rm *.o 

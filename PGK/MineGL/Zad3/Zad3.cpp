@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "shader.hpp"
+#include "controls2.hpp"
 #include <array>
 
 GLFWwindow* window;
@@ -187,24 +188,24 @@ int main(int argc, char * argv[] )
 	glEnableVertexAttribArray(2);	
 	glBindVertexArray(0);
 	
-	//glm::mat4 cameraPos;
-	//GLuint vec1 = glGetUniformLocation(programID1, "transform");
-	//GLuint vec2 = glGetUniformLocation(programID2, "transform");
+	glm::mat4 cameraPos;
+	GLuint vec1 = glGetUniformLocation(programID1, "transform");
+	GLuint vec2 = glGetUniformLocation(programID2, "transform");
 	do{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		
 		//computeMatricesFromInputs();		
-		//cameraPos = getCameraPos();	
+		cameraPos = getCameraPos();	
 		
 		glUseProgram(programID1);		
-		//glUniformMatrix4fv(vec1, 1, GL_FALSE, glm::value_ptr(cameraPos));	
+		glUniformMatrix4fv(vec1, 1, GL_FALSE, glm::value_ptr(cameraPos));	
 		glBindVertexArray(VAO);		
 		glBindTexture(GL_TEXTURE_2D, texture);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 		
-		glUseProgram(programID2);	
-		//glUniformMatrix4fv(vec2, 1, GL_FALSE, glm::value_ptr(cameraPos));
+		/*glUseProgram(programID2);	
+		glUniformMatrix4fv(vec2, 1, GL_FALSE, glm::value_ptr(cameraPos));
 		glBindVertexArray(VAOWALL);
-		glDrawElements(GL_TRIANGLES, wIndex.size(), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, wIndex.size(), GL_UNSIGNED_INT, 0);*/
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

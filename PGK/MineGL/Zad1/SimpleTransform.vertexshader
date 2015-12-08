@@ -3,7 +3,7 @@
 in vec3 vertexPosition_modelspace;
 
 out vec3 fragmentColor;
-uniform vec3 MVP;
+uniform mat4 MVP;
 
 void main(){
 

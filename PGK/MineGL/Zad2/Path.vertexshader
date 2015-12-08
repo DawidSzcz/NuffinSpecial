@@ -4,9 +4,10 @@ layout (location = 2) in vec3 vertexPosition_modelspace;
 
 out vec3 fragmentColor;
 uniform mat4 transform;
+uniform float cos;
 
 void main(){
-        gl_Position =  transform * vec4(vertexPosition_modelspace[1], vertexPosition_modelspace[0], vertexPosition_modelspace[2], 1);
+        gl_Position =  transform * vec4(cos*vertexPosition_modelspace[1], vertexPosition_modelspace[0], vertexPosition_modelspace[2], 1);
 
         fragmentColor = vec3(vertexPosition_modelspace[2],1 - vertexPosition_modelspace[2],0);
 }

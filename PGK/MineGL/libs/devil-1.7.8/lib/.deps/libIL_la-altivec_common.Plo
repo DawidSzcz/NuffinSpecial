@@ -1,0 +1,6 @@
+libIL_la-altivec_common.lo: ../src-IL/src/altivec_common.c \
+ /usr/include/stdc-predef.h ../include/IL/config.h
+
+/usr/include/stdc-predef.h:
+
+../include/IL/config.h:
