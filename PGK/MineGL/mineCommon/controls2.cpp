@@ -23,26 +23,20 @@ glm::mat4 getCameraPos()
 	trans = glm::rotate(trans, yAngle, glm::vec3(1.0, 0.0, 0.0));
 	trans = glm::rotate(trans, xAngle, glm::vec3(0.0, 1.0, 0.0));
 	trans = glm::translate(trans, glm::vec3(xpos, ypos, 0.0f));
- 	return glm::scale(trans, glm::vec3(scl, scl, 1)); 
-	//return trans;
+ 	trans = glm::scale(trans, glm::vec3(scl, scl, 1)); 
+ 	return trans;
 }
-glm::vec2 getAngles()
-{
-	return glm::vec2(xAngle, yAngle);
-}
+
 
 
 bool is3d()
 {
 	return is3D;
 }
-
-// Initial horizontal angle : toward -Z
-float horizontalAngle = 3.14f;
-// Initial vertical angle : none
-float verticalAngle = 0.0f;
-// Initial Field of View
-float initialFoV = 45.0f;
+GLfloat getYCord()
+{
+	return ypos/scl;
+}
 
 float mouseSpeed = 0.005f;
 
@@ -85,6 +79,7 @@ void computeMatricesFromInputs(){
 	}
 	// Strafe right
 	if (glfwGetKey( window, GLFW_KEY_RIGHT ) == GLFW_PRESS){
+		//std::cout<<xAngle<<std::endl;
 		if(!is3D)	
 			xpos -= speed;
 		else
@@ -92,13 +87,20 @@ void computeMatricesFromInputs(){
 	}
 	// Strafe left
 	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
+		mat4 temp = getCameraPos();
+		std::cout<<std::endl<<temp[0][0]<<"\t"<<temp[0][1]<<"\t"<<temp[0][2]<<"\t"<<temp[0][3]<<std::endl;
+		std::cout<<temp[1][0]<<"\t"<<temp[1][1]<<"\t"<<temp[1][2]<<"\t"<<temp[1][3]<<std::endl;
+		std::cout<<temp[2][0]<<"\t"<<temp[2][1]<<"\t"<<temp[2][2]<<"\t"<<temp[2][3]<<std::endl;
+		std::cout<<temp[3][0]<<"\t"<<temp[3][1]<<"\t"<<temp[3][2]<<"\t"<<temp[3][3]<<std::endl;
 		if(!is3D)	
 			xpos += speed;
 		else
 			xAngle > -45.0 ? xAngle -= speed*5 : xAngle = -45.0;
 	}
 	if (released && glfwGetKey( window, GLFW_KEY_TAB) == GLFW_PRESS){
-		std::cout<<"Rot: " << is3D << std::endl;
+		//std::cout<<"Rot: " << is3D << std::endl;
+		xAngle = 0.0;
+		yAngle = 0.0;
 		is3D = !is3D;
 		released = false;
 	} 

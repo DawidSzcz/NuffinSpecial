@@ -4,5 +4,6 @@
 void computeMatricesFromInputs();
 glm::mat4 getCameraPos();
 bool is3d();
+GLfloat getYCord();
 
 #endif
