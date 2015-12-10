@@ -1,5 +1,5 @@
-LIBS= -lglfw3 -lGL -lGLU -lGLEW -lX11 -lXxf86vm -lpthread -lXrandr -lXi -lIL
-FLAGS= -std=gnu++11 -O3 -ImineCommon -Iinclude
+LIBS= -lglfw3 -lGL -lGLU -lGLEW -lX11 -lXxf86vm -lpthread -lXrandr -lXi -lIL -ltiff -lpng12 -llcms -ljasper -ljpeg -lIlmImf -lz -lImath -lHalf -lIex -lIlmThread 
+FLAGS= -std=gnu++11 -O3 -ImineCommon -Iinclude -Llib
 
 all: clean Zad1 Zad2 Zad3 picture 
 

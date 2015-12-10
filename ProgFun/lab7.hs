@@ -41,11 +41,14 @@ getRow i (0:xs) acc = getRow (i+1) xs acc >>= \n -> return n
 getRow i (_:xs)  acc = getRow (i+1) xs (i:acc) >>= \n -> return n
 
 comp_turn board
-	| empty board = putStr "Przegrałeś"
+	| empty board = putStr "\nPrzegrałeś"
 	| otherwise	      = do{
 							row <- getRow 1 board [];
 							newBoard <- sub board row;
 							print_board newBoard True;
+							putStr "\nKomputer usunął gwiazdkę z ";
+ 							return row >>= \r -> putChar (intToDigit r);
+							putStr " pola";   
 							player_turn newBoard;
 						}
 sub (x:xs) 1 = return ((x-1):xs) 

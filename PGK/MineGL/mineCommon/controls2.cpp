@@ -20,10 +20,10 @@ bool released = true, is3D = false;
 glm::mat4 getCameraPos()
 {
 	glm::mat4 trans;
-	trans = glm::rotate(trans, yAngle, glm::vec3(1.0, 0.0, 0.0));
-	trans = glm::rotate(trans, xAngle, glm::vec3(0.0, 1.0, 0.0));
 	trans = glm::translate(trans, glm::vec3(xpos, ypos, 0.0f));
  	trans = glm::scale(trans, glm::vec3(scl, scl, 1)); 
+	trans = glm::rotate(trans, yAngle, glm::vec3(1.0, 0.0, 0.0));
+	trans = glm::rotate(trans, xAngle, glm::vec3(0.0, 1.0, 0.0));
  	return trans;
 }
 
