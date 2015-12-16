@@ -5,13 +5,13 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 #include <fstream>
 #include <vector>
 
-#include "shader.hpp"
-#include "controls2.hpp"
+#include "../mineCommon/shader.hpp"
+#include "../mineCommon/controls2.hpp"
 
 GLFWwindow* window;
 std::vector < GLfloat >* data;

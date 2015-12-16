@@ -19,17 +19,12 @@ bool released = true, is3D = false;
 
 glm::mat4 getCameraPos()
 {
-	glm::mat4 projection;
-	projection = glm::perspective(45.0f, 1.0f, 0.1f, 10.0f);
-	
-	glm::mat4 model;
-	model = glm::rotate(model, yAngle, glm::vec3(1.0, 0.0, 0.0));
-	model = glm::rotate(model, xAngle, glm::vec3(0.0, 1.0, 0.0));
-	
-	glm::mat4 view;
-	view = glm::translate(view, glm::vec3(xpos, ypos, scl));
-	
- 	return projection * view * model;
+	glm::mat4 trans;
+	trans = glm::translate(trans, glm::vec3(xpos, ypos, 0.0f));
+ 	trans = glm::scale(trans, glm::vec3(scl, scl, 1)); 
+	trans = glm::rotate(trans, yAngle, glm::vec3(1.0, 0.0, 0.0));
+	trans = glm::rotate(trans, xAngle, glm::vec3(0.0, 1.0, 0.0));
+ 	return trans;
 }
 
 
