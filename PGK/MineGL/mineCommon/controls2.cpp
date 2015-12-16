@@ -13,18 +13,23 @@ using namespace glm;
 
 #define PI 3.14159265
 
-double xpos = 0, ypos = 0, scl = 1, speed = 0.03, zoom = 1.01;
+double xpos = 0, ypos = 0, scl = -1.0, speed = 0.03;
 GLfloat xAngle = 0.0, yAngle = 0.0;
 bool released = true, is3D = false;
 
 glm::mat4 getCameraPos()
 {
-	glm::mat4 trans;
-	trans = glm::rotate(trans, yAngle, glm::vec3(1.0, 0.0, 0.0));
-	trans = glm::rotate(trans, xAngle, glm::vec3(0.0, 1.0, 0.0));
-	trans = glm::translate(trans, glm::vec3(xpos, ypos, 0.0f));
- 	trans = glm::scale(trans, glm::vec3(scl, scl, 1)); 
- 	return trans;
+	glm::mat4 projection;
+	projection = glm::perspective(45.0f, 1.0f, 0.1f, 10.0f);
+	
+	glm::mat4 model;
+	model = glm::rotate(model, yAngle, glm::vec3(1.0, 0.0, 0.0));
+	model = glm::rotate(model, xAngle, glm::vec3(0.0, 1.0, 0.0));
+	
+	glm::mat4 view;
+	view = glm::translate(view, glm::vec3(xpos, ypos, scl));
+	
+ 	return projection * view * model;
 }
 
 
@@ -54,15 +59,11 @@ void computeMatricesFromInputs(){
 
 	// Move forward
 	if (glfwGetKey( window, GLFW_KEY_KP_SUBTRACT  ) == GLFW_PRESS){
-		scl /= zoom;
-		xpos/= zoom;
-		ypos /= zoom;
+		scl -= speed;
 	}
 	if (glfwGetKey( window, GLFW_KEY_KP_ADD    ) == GLFW_PRESS){
-		scl *= zoom;
-		xpos *= zoom;
-		ypos *= zoom;
-		std::cout<<"ZOOM: " << xpos << " " << ypos << std::endl;
+		scl += speed;
+		//std::cout<<"ZOOM: " << xpos << " " << ypos << std::endl;
 	}
 	if (glfwGetKey( window, GLFW_KEY_UP ) == GLFW_PRESS){
 		if(!is3D)	
@@ -87,11 +88,6 @@ void computeMatricesFromInputs(){
 	}
 	// Strafe left
 	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
-		mat4 temp = getCameraPos();
-		std::cout<<std::endl<<temp[0][0]<<"\t"<<temp[0][1]<<"\t"<<temp[0][2]<<"\t"<<temp[0][3]<<std::endl;
-		std::cout<<temp[1][0]<<"\t"<<temp[1][1]<<"\t"<<temp[1][2]<<"\t"<<temp[1][3]<<std::endl;
-		std::cout<<temp[2][0]<<"\t"<<temp[2][1]<<"\t"<<temp[2][2]<<"\t"<<temp[2][3]<<std::endl;
-		std::cout<<temp[3][0]<<"\t"<<temp[3][1]<<"\t"<<temp[3][2]<<"\t"<<temp[3][3]<<std::endl;
 		if(!is3D)	
 			xpos += speed;
 		else
@@ -108,4 +104,12 @@ void computeMatricesFromInputs(){
 		released = true;
 	}
 	lastTime = currentTime;
+}
+
+void print(mat4 temp)
+{
+		std::cout<<std::endl<<temp[0][0]<<"\t"<<temp[0][1]<<"\t"<<temp[0][2]<<"\t"<<temp[0][3]<<std::endl;
+		std::cout<<temp[1][0]<<"\t"<<temp[1][1]<<"\t"<<temp[1][2]<<"\t"<<temp[1][3]<<std::endl;
+		std::cout<<temp[2][0]<<"\t"<<temp[2][1]<<"\t"<<temp[2][2]<<"\t"<<temp[2][3]<<std::endl;
+		std::cout<<temp[3][0]<<"\t"<<temp[3][1]<<"\t"<<temp[3][2]<<"\t"<<temp[3][3]<<std::endl;
 }

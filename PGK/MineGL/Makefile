@@ -11,8 +11,8 @@ Zad1: shader controls
 	g++ ${FLAGS} -o Zad1/Zad1 Zad1/Zad1.cpp shader.o controls.o  ${LIBS} # dlaczego nie $<
 Zad2: shader controls2 Zad2utils
 	g++ ${FLAGS} -o Zad2/Zad2 Zad2/Zad2.cpp shader.o controls2.o utils.o ${LIBS}
-Zad3: shader Zad3utils controls2
-	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o Zad3utils.o controls2.o ${LIBS} 
+Zad3: shader utilsZ3 controlsZ3
+	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o Zad3utils.o controls.o ${LIBS} 
 
 
 
@@ -28,8 +28,8 @@ shader:
 Zad2utils:
 	g++ ${FLAGS} Zad2/utils.cpp -c ${LIBS}
 
-Zad3utils:
-	g++ ${FLAGS} mineCommon/Zad3utils.cpp -c ${LIBS}
+utilsZ3:
+	g++ ${FLAGS} Zad3/utils.cpp -c ${LIBS}
 
 textfile:
 	g++ ${FLAGS} SimpleTexture/textfile.cpp -c ${LIBS}
@@ -40,6 +40,9 @@ controls:
 
 controls2:
 	g++ ${FLAGS} mineCommon/controls2.cpp -c ${LIBS}
+
+controlsZ3:
+	g++ ${FLAGS} Zad3/controls.cpp -c ${LIBS}
 
 .PHONY: Zad1 Zad2 Zad3
 

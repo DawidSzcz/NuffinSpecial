@@ -1,14 +1,12 @@
 #include "Zad3.hpp"
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-
 #define PI 3.14159265
 
 ILuint width;// = ilGetInteger(IL_IMAGE_WIDTH);
 ILuint height;
 double minZ = 1000, maxZ = -1000;
+
+
 
 int makeWindow(char* str)
 {        
