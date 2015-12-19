@@ -1,1 +1,4 @@
-# dummy
+libILU_la-ilu_scaling.lo: ../src-ILU/src/ilu_scaling.c \
+ /usr/include/stdc-predef.h
+
+/usr/include/stdc-predef.h:

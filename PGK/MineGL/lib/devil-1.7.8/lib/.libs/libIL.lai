@@ -14,10 +14,10 @@ library_names='libIL.so.1.1.0 libIL.so.1 libIL.so'
 old_library='libIL.a'
 
 # Linker flags that can not go in dependency_libs.
-inherited_linker_flags=' -pthread'
+inherited_linker_flags=''
 
 # Libraries that this one depends upon.
-dependency_libs=' /usr/lib/x86_64-linux-gnu/libtiff.la -lpng12 -llcms -ljasper -ljpeg /usr/lib/x86_64-linux-gnu/libIlmImf.la -lImath -lHalf -lIex -lIlmThread -lz'
+dependency_libs=' -lpng12 -lz'
 
 # Names of additional weak libraries provided by this library
 weak_library_names=''

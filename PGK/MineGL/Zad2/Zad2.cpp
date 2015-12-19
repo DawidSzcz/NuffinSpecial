@@ -10,8 +10,8 @@
 #include <fstream>
 #include <vector>
 
-#include "../mineCommon/shader.hpp"
-#include "../mineCommon/controls2.hpp"
+#include "shader.hpp"
+#include "controls.hpp"
 
 GLFWwindow* window;
 std::vector < GLfloat >* data;

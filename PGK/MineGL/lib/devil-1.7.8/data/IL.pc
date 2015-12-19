@@ -1,4 +1,4 @@
-prefix=/home/i258352/build
+prefix=/usr/local
 exec_prefix=${prefix}
 
 Name: IL
@@ -6,5 +6,5 @@ Description: Developer's Image Library - IL part (just image loading)
 Version: 1.7.8
 URL: http://openil.sourceforge.net
 Libs: -L${exec_prefix}/lib -lIL 
-Libs.private: -ltiff -lpng12 -llcms -ljasper -ljpeg -pthread -lIlmImf -lz -lImath -lHalf -lIex -lIlmThread   
-Cflags: -I${prefix}/include -pthread -I/usr/include/OpenEXR   
+Libs.private: -lpng12  
+Cflags: -I${prefix}/include  

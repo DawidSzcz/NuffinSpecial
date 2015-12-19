@@ -23,13 +23,13 @@
 /* #undef HAVE_GLUT_GLUT_H */
 
 /* Define to 1 if you have the <GL/glut.h> header file. */
-/* #undef HAVE_GL_GLUT_H */
+#define HAVE_GL_GLUT_H 1
 
 /* Define to 1 if you have the <GL/glu.h> header file. */
-/* #undef HAVE_GL_GLU_H */
+#define HAVE_GL_GLU_H 1
 
 /* Define to 1 if you have the <GL/gl.h> header file. */
-/* #undef HAVE_GL_GL_H */
+#define HAVE_GL_GL_H 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -89,23 +89,23 @@
 /* #undef ILUT_USE_DIRECTX9 */
 
 /* Define if system supports OpenGL API */
-/* #undef ILUT_USE_OPENGL */
+#define ILUT_USE_OPENGL 1
 
 /* Support SDL API */
 /* #undef ILUT_USE_SDL */
 
 /* Support X11 API */
-/* #undef ILUT_USE_X11 */
+#define ILUT_USE_X11 1
 
 /* Support X11 XRender extension */
-/* #undef ILUT_USE_XRENDER */
+#define ILUT_USE_XRENDER /**/
 
 /* Support X11 XShm extension */
-/* #undef ILUT_USE_XSHM */
+#define ILUT_USE_XSHM /**/
 
 /* Define if you want to build ILU part of DevIL (used in DevIL
    examples/tests) */
-/* #undef ILU_ENABLED */
+#define ILU_ENABLED /**/
 
 /* Define if you can support at least some ASM */
 #define IL_INLINE_ASM 1
@@ -129,7 +129,7 @@
 
 /* exr support (EXR is a HDR image file format standardized by Industrial
    Light and Magic. OpenEXR powered) */
-/* #undef IL_NO_EXR */
+#define IL_NO_EXR /**/
 
 /* fits support (FITS (Flexible Image Transport System) is used for storing
    scientific images and is used extensively in astronomy.) */
@@ -166,13 +166,13 @@
 
 /* jp2 support (JP2 (JPEG 2000) is a better, but not so widespread,
    alternative to JPEG. JasPer powered) */
-/* #undef IL_NO_JP2 */
+#define IL_NO_JP2 /**/
 
 /* jpeg support (JPEG is most common lossy format. libjpeg powered) */
-/* #undef IL_NO_JPG */
+#define IL_NO_JPG /**/
 
 /* lcms support () */
-/* #undef IL_NO_LCMS */
+#define IL_NO_LCMS /**/
 
 /* lif support (LIF is the image format of the game Homeworld.) */
 /* #undef IL_NO_LIF */
@@ -242,7 +242,7 @@
 
 /* tiff support (TIFF is a lossless format supporting greater color depths.
    libtiff powered) */
-/* #undef IL_NO_TIF */
+#define IL_NO_TIF /**/
 
 /* tpl support (TPL is the format used by many GameCube and Wii games.) */
 /* #undef IL_NO_TPL */
@@ -283,7 +283,7 @@
 #define IL_USE_JPEGLIB_UNMODIFIED 1
 
 /* LCMS include without lcms/ support */
-#define LCMS_NODIRINCLUDE 1
+/* #undef LCMS_NODIRINCLUDE */
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */

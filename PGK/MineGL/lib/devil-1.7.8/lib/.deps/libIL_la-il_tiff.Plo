@@ -48,11 +48,7 @@ libIL_la-il_tiff.lo: ../src-IL/src/il_tiff.c /usr/include/stdc-predef.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  ../include/IL/devil_internal_exports.h ../src-IL/include/il_files.h \
- ../src-IL/include/il_endian.h ../src-IL/include/il_internal.h \
- /usr/include/x86_64-linux-gnu/tiffio.h \
- /usr/include/x86_64-linux-gnu/tiff.h \
- /usr/include/x86_64-linux-gnu/tiffconf.h \
- /usr/include/x86_64-linux-gnu/tiffvers.h ../src-IL/include/il_manip.h
+ ../src-IL/include/il_endian.h ../src-IL/include/il_internal.h
 
 /usr/include/stdc-predef.h:
 
@@ -185,13 +181,3 @@ libIL_la-il_tiff.lo: ../src-IL/src/il_tiff.c /usr/include/stdc-predef.h \
 ../src-IL/include/il_endian.h:
 
 ../src-IL/include/il_internal.h:
-
-/usr/include/x86_64-linux-gnu/tiffio.h:
-
-/usr/include/x86_64-linux-gnu/tiff.h:
-
-/usr/include/x86_64-linux-gnu/tiffconf.h:
-
-/usr/include/x86_64-linux-gnu/tiffvers.h:
-
-../src-IL/include/il_manip.h:
