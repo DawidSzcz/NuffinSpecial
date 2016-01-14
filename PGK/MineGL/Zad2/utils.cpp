@@ -66,7 +66,7 @@ void resize(int args, char* path)
 	std::cout << (maxY - minY)/2 + minY << " bounds" << maxX << " " << minX <<" " << maxY << " " << minY<<std::endl;
 	scaleX = (maxX - minX)/2;
     scaleY = (maxY - minY)/2;
-	scaleZ = maxZ - minZ;
+	scaleZ = maxZ ;
     moveX = (maxX + minX)/2 ;
     moveY = (maxY + minY)/2;
 		//std::cout << "cosin: " << cosin <<" scaleX" << scaleX << " scaleY " << scaleY << "moveX" << moveX << " moveY " << moveY<<std::endl;
@@ -76,7 +76,9 @@ void resize(int args, char* path)
 			//std::cout << "Przed " <<data[arg][i] << " " << data[arg][i+1];
 	        data[arg][i] = ((data[arg][i]) -moveY) / scaleY;
 	        data[arg][++i] = ((data[arg][i]) -moveX) / scaleX;
-			data[arg][++i] = ((data[arg][i]) -minZ)/ scaleZ; 
+	        //if(i%6 == 4)
+				data[arg][++i] = ((data[arg][i]) - minZ)/ -scaleZ; 
+			std::cout<<data[arg][i-1]<<std::endl; 
 		} 
 }
 

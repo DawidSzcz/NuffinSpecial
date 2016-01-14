@@ -17,14 +17,14 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
-#include "controls2.hpp"
+#include "controls.hpp"
 #include "shader.hpp"
 
 extern GLfloat xpos, zpos;
-
+extern int windowWidth, windowHeight;
 
 extern GLFWwindow* window;
-int makeWindow(char* str);
+int makeWindow(int, int, char* str);
 void makeWalls(char* path, int SIZE);
 ILubyte bindImage(std::string path);
 bool isEnd();

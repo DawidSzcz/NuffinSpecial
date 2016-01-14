@@ -1,11 +1,12 @@
 #include "Zad3.hpp"
 
-GLfloat xpos, zpos;
+GLfloat cap, xpos, zpos;
 GLFWwindow* window;
 std::vector < GLfloat > walls;
 std::vector < GLint > wIndex;
 std::vector <std::vector<bool>> isWall;
 int SIZE, mZ, mX;
+int windowWidth = 1024, windowHeight = 1024;
 
 void makeWalls(char* path)
 {
@@ -20,7 +21,7 @@ void makeWalls(char* path)
 	ret = fscanf(file, "%d\n", &SIZE);
 	ret = fscanf(file, "%c", &c);
 	
-	GLfloat cap = 2.0/SIZE;
+	cap = 2.0/SIZE;
 	isWall.push_back(std::vector<bool>());
 	while(ret && ++i < SIZE*SIZE)
 	{
@@ -112,10 +113,12 @@ void makeWalls(char* path)
 
 int main(int argc, char * argv[] )
 {	
-	if(makeWindow((char*)"Zad3") == -1)
+	glfwSetCursorPos(window, windowWidth/2, windowHeight/2);
+	if(makeWindow(windowWidth, windowHeight, (char*)"Zad3") == -1)
 		return -1;
-	GLuint wTexture = bindImage("mur2.png");
+	GLuint wTexture = bindImage("mur.png");
 	GLuint texture = bindImage("floor.png");
+	GLuint mTexture = bindImage("gold.png");
 	
 	makeWalls((char*)"sth");
 	std::cout<<"tutut"<< std::endl;
@@ -123,21 +126,21 @@ int main(int argc, char * argv[] )
  	GLuint programID1 = LoadShaders( "Transform.vertexshader", "FragmentShader.fragmentshader" );
 	GLuint programID2 = LoadShaders( "Path.vertexshader", "Path.fragmentshader" );
 	GLfloat vertexes[] = {
-    		-1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-     		1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+    		-1.0f, 1.0f, 0.0f, 0.0f, 1.0f*SIZE*2,
+     		1.0f, 1.0f, 0.0f, 1.0f*SIZE*2, 1.0f*SIZE*2,
      		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-			1.0f, -1.0f, 0.0f, 1.0f, 0.0f
+			1.0f, -1.0f, 0.0f, 1.0f*SIZE*2, 0.0f
 	};  
 	GLuint indices[] = {  2, 0, 1, 2, 3, 1};
 
 	GLfloat meta[] = {
-    		-1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-     		1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-     		-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-			1.0f, -1.0f, 0.0f, 1.0f, 0.0f
+    		-1.0f + (mZ+1)*cap, 1.0f - mX*cap, 0.01f, 0.0f, 1.0f,
+     		-1.0f + (mZ+1)*cap, 1.0f - (mX+1)*cap, 0.01f, 1.0f, 1.0f,
+     		-1.0f + mZ*cap, 1.0f - mX*cap, 0.0f, 0.01f, 0.0f,
+			-1.0f + mZ*cap, 1.0f - (mX+1)*cap,0.01f, 1.0f, 0.0f
 	}; 
         
-	GLuint VAO, VBA, EBO, VAOWALL, VBAWALL, EBOWALL;
+	GLuint VAO, VBA, EBO, VAOMETA, VBAMETA, EBOMETA, VAOWALL, VBAWALL, EBOWALL;
 	
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -167,6 +170,35 @@ int main(int argc, char * argv[] )
 	glEnableVertexAttribArray(1);
 	glBindVertexArray(0); 
 
+    glGenVertexArrays(1, &VAOMETA);
+    glBindVertexArray(VAOMETA);
+	glGenBuffers(1, &VBAMETA);
+    glBindBuffer(GL_ARRAY_BUFFER, VBAMETA);
+	glBufferData(GL_ARRAY_BUFFER, 20* sizeof(GLfloat), meta, GL_STATIC_DRAW);
+	glGenBuffers(1, &EBOMETA);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOMETA);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); 
+	glVertexAttribPointer(
+                    0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+                    3,                  // size
+                    GL_FLOAT,           // type
+                    GL_FALSE,           // normalized?
+                    5*sizeof(GLfloat),                  // stride
+                    (void*)0            // array buffer offset
+        );
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(
+                    1,                  // attribute. No particular reason for 0, but must match the layout in the shader.
+                    2,                  // size
+                    GL_FLOAT,           // type
+                    GL_FALSE,           // normalized?
+                    5*sizeof(GLfloat),                  // stride
+                    (void*)(3*sizeof(GLfloat))           // array buffer offset
+        );
+	glEnableVertexAttribArray(1);
+	glBindVertexArray(0); 
+
+
 	glGenVertexArrays(1, &VAOWALL);
 	glBindVertexArray(VAOWALL);
 	
@@ -179,10 +211,7 @@ int main(int argc, char * argv[] )
 	glGenBuffers(1, &EBOWALL);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBOWALL);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeOfEB, &wIndex.front(), GL_STATIC_DRAW); 
-	
 
-
-	
 	glVertexAttribPointer(
                     0,                  // attribute. No particular reason for 0, but must match the layout in the shader.
                     3,                  // size
@@ -207,6 +236,7 @@ int main(int argc, char * argv[] )
 	GLuint vec1 = glGetUniformLocation(programID1, "transform");
 	glEnable(GL_DEPTH_TEST);  
 	
+	//glfwSetCursorPos(window, windowWidth/2, windowHeight/2);
 	do{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		
 		computeMatricesFromInputs();		
@@ -214,8 +244,13 @@ int main(int argc, char * argv[] )
 		
 		glUseProgram(programID1);		
 		glUniformMatrix4fv(vec1, 1, GL_FALSE, glm::value_ptr(cameraPos));	
+		
 		glBindVertexArray(VAO);		
 		glBindTexture(GL_TEXTURE_2D, texture);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
+        glBindVertexArray(VAOMETA);		
+		glBindTexture(GL_TEXTURE_2D, mTexture);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
 		glBindVertexArray(VAOWALL);
