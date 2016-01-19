@@ -114,7 +114,7 @@ int main(int argc, char * argv[] )
 {	
 	if(makeWindow((char*)"Zad3") == -1)
 		return -1;
-	GLuint wTexture = bindImage("mur2.png");
+    GLuint wTexture = bindImage("mur.png");
 	GLuint texture = bindImage("floor.png");
 	
 	makeWalls((char*)"sth");
@@ -216,7 +216,7 @@ int main(int argc, char * argv[] )
 		glUniformMatrix4fv(vec1, 1, GL_FALSE, glm::value_ptr(cameraPos));	
 		glBindVertexArray(VAO);		
 		glBindTexture(GL_TEXTURE_2D, texture);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
 		glBindVertexArray(VAOWALL);
 		glBindTexture(GL_TEXTURE_2D, wTexture);
