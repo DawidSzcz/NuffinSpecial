@@ -1,0 +1,14 @@
+#version 330 core
+
+
+uniform vec3 light_pos;
+
+in vec2 texCord;
+out vec4 color;
+uniform sampler2D ourTexture;
+in vec3 Norm;
+in vec3 fragPos;
+
+void main(){
+	color = (max(dot(normalize(Norm), normalize(fragPos - light_pos)), 0.0f) + 0.1f) * min(2.0f, 3.0f/distance(fragPos, light_pos)) * texture(ourTexture, texCord);
+}

@@ -1,0 +1,56 @@
+	Thu Jan 14 03:18 2016 Time and Allocation Profiling Report  (Final)
+
+	   profiling +RTS -p -RTS
+
+	total time  =        0.00 secs   (2 ticks @ 1000 us, 1 processor)
+	total alloc =     557,136 bytes  (excludes profiling overheads)
+
+COST CENTRE MODULE           %time %alloc
+
+makeBoard   Main             100.0    7.3
+CAF         GHC.IO.Handle.FD   0.0    6.2
+main        Main               0.0    2.4
+makeBoard.\ Main               0.0    1.1
+boundRow    Main               0.0    4.6
+makeRow     Main               0.0    1.6
+fillRow     Main               0.0    5.9
+makeSet     Main               0.0    4.8
+makeSet.\   Main               0.0    1.3
+makeB.\     Main               0.0    4.0
+check       Main               0.0    1.9
+check_aux   Main               0.0    1.8
+unique      Main               0.0   55.1
+
+
+                                                               individual     inherited
+COST CENTRE          MODULE                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                 MAIN                     45           0    0.0    0.1   100.0  100.0
+ CAF                 Main                     89           0    0.0    0.3   100.0   93.0
+  test1              Main                     92           1    0.0    0.0     0.0    0.0
+  main               Main                     90           1    0.0    2.4   100.0   92.8
+   makeBoard         Main                     91           1  100.0    7.3   100.0   90.4
+    makeBoard.\      Main                    110           7    0.0    0.2     0.0    1.1
+     check           Main                    111           7    0.0    0.5     0.0    0.9
+      check_aux      Main                    112          65    0.0    0.4     0.0    0.4
+    makeBoard.\      Main                    108          72    0.0    1.1     0.0   56.2
+     unique          Main                    109         360    0.0   55.1     0.0   55.1
+    makeBoard.\      Main                     96           4    0.0    0.0     0.0   16.5
+     makeRow         Main                     97           4    0.0    1.6     0.0   16.5
+      check          Main                    104          21    0.0    1.4     0.0    2.7
+       check_aux     Main                    105         190    0.0    1.3     0.0    1.3
+      fillRow        Main                     98          86    0.0    5.9     0.0   12.2
+       makeSet       Main                    100          65    0.0    4.8     0.0    6.2
+        makeSet.x    Main                    103           9    0.0    0.1     0.0    0.1
+        makeSet.\    Main                    101          73    0.0    1.3     0.0    1.3
+    makeBoard.limits Main                     94           1    0.0    0.0     0.0    5.1
+     boundBoard      Main                     95           4    0.0    0.2     0.0    5.1
+      boundRow       Main                     99          19    0.0    4.6     0.0    4.9
+       boundRow.row  Main                    102          15    0.0    0.3     0.0    0.3
+    makeB            Main                     93           5    0.0    0.1     0.0    4.1
+     makeB.next      Main                    107           4    0.0    0.0     0.0    0.0
+     makeB.\         Main                    106          13    0.0    4.0     0.0    4.0
+ CAF                 GHC.IO.Handle.FD         85           0    0.0    6.2     0.0    6.2
+ CAF                 GHC.Conc.Signal          81           0    0.0    0.1     0.0    0.1
+ CAF                 GHC.IO.Encoding          77           0    0.0    0.5     0.0    0.5
+ CAF                 GHC.IO.Encoding.Iconv    66           0    0.0    0.0     0.0    0.0

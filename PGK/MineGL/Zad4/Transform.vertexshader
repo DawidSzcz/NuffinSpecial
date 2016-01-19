@@ -1,0 +1,16 @@
+#version 330 core
+layout (location = 0) in vec3 cord;
+layout (location = 1) in vec3 norm;
+
+uniform mat4 transform;
+uniform mat4 model;
+out vec2 texCord;
+out vec3 Norm;
+out vec3 fragPos;
+void main()
+{
+    gl_Position = transform * model * vec4(cord[0],cord[1], cord[2], 1.0f);
+    texCord = vec2(cord[0]/2.0+0.5,0.5-cord[2]/2.0);
+    Norm = norm;
+    fragPos = vec3(model *vec4(cord, 1.0f));
+}
