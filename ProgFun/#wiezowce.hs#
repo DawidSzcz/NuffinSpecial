@@ -1,0 +1,51 @@
+import Control.Monad
+import Data.List
+
+makeSet set = map (\x -> (x, filter (x /= ) set)) set
+  
+
+makeB [] = [[]]
+makeB (x:xs) = foldr (\x y -> (map (x:) next) ++ y) [] x
+	where next = makeB xs
+
+check (l,r) row =
+	(check_aux l row 0 0 && check_aux r (reverse row) 0 0)
+	
+check_aux g [] _ a = a == g
+check_aux g (h:t) max a =
+	if h > max then
+		check_aux g t h (a+1)
+	else
+		check_aux g t max a
+
+fillRow [] = [[]]
+fillRow set = 
+	do
+		(curr, newSet) <- makeSet set
+		rest <- fillRow newSet
+		return (curr:rest)
+	
+makeRow desc n = 
+	do 
+		row <- fillRow [1..n]
+		guard $check desc row
+		return row
+		
+makeBoard (w, k, n) =
+	do
+		board <- makeB (map (\x -> makeRow x n) w)
+		guard $foldr (\x y -> (unique x 0 n) && y) True (transpose board)
+		guard (foldr (\x y -> (uncurry check x) && y) True (zip k $transpose board)) 
+		return board
+		
+		
+unique [] a n = a == 2^(n+1) -2
+unique (x:xs) a n = unique xs (2^x + a) n
+
+test1 = ([ (2, 2), (1, 3), (2, 2), (3, 1)], [ (2, 2), (3, 2), (1, 2), (4, 1)], 4)
+test2 = ([ (3, 1), (1, 3), (3, 2), (2, 3)], [ (2, 2), (2, 1), (3, 2), (1, 3)], 4)
+test3 = ([ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], [ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], 5)
+test4 = ([ (2, 2), (1, 4), (2, 3), (2, 2), (3, 1)], [ (2, 3), (3, 3), (1, 4), (2, 2), (2, 1)], 5)
+test5 = ([ (2, 2), (2, 2), (3, 1), (1, 3), (3, 2)], [ (3, 2), (1, 2), (4, 1), (2, 3), (2, 2)], 5)
+test6 = ([ (1, 3), (2, 4), (3, 1), (3, 2), (3, 3), (2, 3)], [ (1, 2), (2, 4), (4, 1), (3, 2), (2, 2), (2, 3)], 6)
+test7 = ([ (2, 1), (3, 2), (2, 2), (2, 4), (1, 3), (2, 3)], [ (2, 2), (3, 3), (4, 1), (3, 2), (2, 3), (1, 3)], 6)

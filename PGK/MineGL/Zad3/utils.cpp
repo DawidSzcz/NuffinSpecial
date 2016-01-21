@@ -8,7 +8,7 @@ double minZ = 1000, maxZ = -1000;
 
 
 
-int makeWindow(char* str)
+int makeWindow(int x, int y, char* str)
 {        
 	if( !glfwInit() )
         {
@@ -21,7 +21,7 @@ int makeWindow(char* str)
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        window = glfwCreateWindow( 1024, 1024, str, NULL, NULL);
+        window = glfwCreateWindow( x, y, str, NULL, NULL);
         if( window == NULL ){
                 fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
                 glfwTerminate();

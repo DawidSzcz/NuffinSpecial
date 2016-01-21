@@ -5,9 +5,10 @@ extern GLfloat xpos, ypos;
 
 #define PI 3.14159265
 
-double  speed = 0.03;
+double  speed = 0.3;
 GLfloat zAngle = 0.0, xAngle = -90.0;
 bool released = true, is3D = false;
+float mouseSpeed = 0.5f;
 
 using namespace glm;
 
@@ -24,12 +25,10 @@ glm::mat4 getCameraPos()
 	
 	glm::mat4 view;
 	view = glm::scale(view, glm::vec3(2.0, 1.0, 2.0));
-	view = glm::translate(view, glm::vec3(xpos, -0.1f, zpos));
+	view = glm::translate(view, glm::vec3(xpos, -1.0/SIZE, zpos));
 	
  	return projection * view * model;
 }
-
-float mouseSpeed = 0.005f;
 
 bool isBanned(GLfloat x, GLfloat y)
 {
@@ -70,28 +69,35 @@ void computeMatricesFromInputs(){
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
 	
+	double mouseX, mouseY;
+	glfwGetCursorPos(window, &mouseX, &mouseY);
+
+	// Reset mouse position for next frame
+	glfwSetCursorPos(window, windowWidth/2, windowHeight/2);
+
+	// Compute new orientation
+	zAngle -= mouseSpeed * float(1024/2 - mouseX ) * deltaTime;
+	
 	if (glfwGetKey( window, GLFW_KEY_UP ) == GLFW_PRESS){
-		if(!isBanned(zpos + cos(zAngle/180.0 * PI)*speed, xpos - sin(zAngle/180.0 * PI)*speed))
-		{
-			zpos += cos(zAngle/180.0 * PI)*speed;
-			xpos -= sin(zAngle/180.0 * PI)*speed;
-		}
-	}
+		if(!isBanned(zpos + cos(zAngle/180.0 * PI)*speed*deltaTime, xpos))
+			zpos += cos(zAngle/180.0 * PI)*speed*deltaTime;
+		if(!isBanned(zpos, xpos - sin(zAngle/180.0 * PI)*speed*deltaTime))
+			xpos -= sin(zAngle/180.0 * PI)*speed*deltaTime;
+	}	
 	// Move backward
 	if (glfwGetKey( window, GLFW_KEY_DOWN ) == GLFW_PRESS){
-		if(!isBanned(zpos - cos(zAngle/180.0 * PI)*speed, xpos + sin(zAngle/180.0 * PI)*speed))
-		{
-			zpos -= cos(zAngle/180.0 * PI)*speed;
-			xpos += sin(zAngle/180.0 * PI)*speed;
-		}
+		if(!isBanned(zpos - cos(zAngle/180.0 * PI)*speed*deltaTime, xpos))
+			zpos -= cos(zAngle/180.0 * PI)*speed*deltaTime;
+		if(!isBanned(zpos, xpos + sin(zAngle/180.0 * PI)*speed*deltaTime))
+			xpos += sin(zAngle/180.0 * PI)*speed*deltaTime;
 	}
 	// Strafe right
 	if (glfwGetKey( window, GLFW_KEY_RIGHT ) == GLFW_PRESS){
-		zAngle += speed * 50;
+		zAngle += speed * 100*deltaTime;
 	}
 	// Strafe left
 	if (glfwGetKey( window, GLFW_KEY_LEFT ) == GLFW_PRESS){
-		zAngle -= speed * 50;
+		zAngle -= speed * 100*deltaTime;
 	}
 	lastTime = currentTime;
 }

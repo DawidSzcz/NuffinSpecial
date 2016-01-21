@@ -1,0 +1,45 @@
+	Thu Jan 14 03:19 2016 Time and Allocation Profiling Report  (Final)
+
+	   test6 +RTS -p -RTS
+
+	total time  =       10.93 secs   (10928 ticks @ 1000 us, 1 processor)
+	total alloc = 20,296,738,976 bytes  (excludes profiling overheads)
+
+COST CENTRE MODULE  %time %alloc
+
+unique      Main     87.8   83.4
+makeBoard   Main      6.3    8.3
+makeB.\     Main      3.2    7.0
+makeBoard.\ Main      2.6    1.2
+
+
+                                                               individual     inherited
+COST CENTRE          MODULE                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                 MAIN                     45           0    0.0    0.0   100.0  100.0
+ CAF                 Main                     89           0    0.0    0.0   100.0  100.0
+  test6              Main                     92           1    0.0    0.0     0.0    0.0
+  main               Main                     90           1    0.0    0.0   100.0  100.0
+   makeBoard         Main                     91           1    6.3    8.3   100.0  100.0
+    makeBoard.\      Main                    108     2855510    2.6    1.2    90.4   84.6
+     unique          Main                    109    19988570   87.8   83.4    87.8   83.4
+    makeBoard.\      Main                     96           6    0.0    0.0     0.0    0.0
+     makeRow         Main                     97           6    0.0    0.0     0.0    0.0
+      check          Main                    104         659    0.0    0.0     0.0    0.0
+       check_aux     Main                    105        7273    0.0    0.0     0.0    0.0
+      fillRow        Main                     98        2328    0.0    0.0     0.0    0.0
+       makeSet       Main                    100        1669    0.0    0.0     0.0    0.0
+        makeSet.\    Main                    103        2090    0.0    0.0     0.0    0.0
+        makeSet.x    Main                    101         232    0.0    0.0     0.0    0.0
+    makeBoard.limits Main                     94           1    0.0    0.0     0.0    0.0
+     boundBoard      Main                     95           6    0.0    0.0     0.0    0.0
+      boundRow       Main                     99          41    0.0    0.0     0.0    0.0
+       boundRow.row  Main                    102          35    0.0    0.0     0.0    0.0
+    makeB            Main                     93           7    0.0    0.0     3.2    7.0
+     makeB.next      Main                    107           6    0.0    0.0     0.0    0.0
+     makeB.\         Main                    106         198    3.2    7.0     3.2    7.0
+ CAF                 GHC.IO.Handle.FD         85           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.Conc.Signal          81           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.IO.Encoding          77           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.TopHandler           72           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.IO.Encoding.Iconv    66           0    0.0    0.0     0.0    0.0

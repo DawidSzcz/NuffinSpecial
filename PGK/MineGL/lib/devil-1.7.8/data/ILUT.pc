@@ -1,4 +1,4 @@
-prefix=/home/i258352/build
+prefix=/usr/local
 exec_prefix=${prefix}
 
 Name: ILUT
@@ -6,5 +6,5 @@ Description: Developer's Image Library - ILUT part (connection to higher level l
 Version: 1.7.8
 URL: http://openil.sourceforge.net
 Libs: -L${exec_prefix}/lib -lILUT -ILU -lIL
-Libs.private: 
-Cflags: -I${prefix}/include -pthread -I/usr/include/OpenEXR   
+Libs.private: -lXrender -lXext -lX11 -lglut  -lSM -lICE -lXmu -lXi  -lGLU -lGL  -lm  -lGLU -lGL  -lm -lGL  -lm 
+Cflags: -I${prefix}/include  

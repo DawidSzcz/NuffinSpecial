@@ -10,8 +10,8 @@
 #include <fstream>
 #include <vector>
 
-#include "../mineCommon/shader.hpp"
-#include "../mineCommon/controls2.hpp"
+#include "shader.hpp"
+#include "controls.hpp"
 
 GLFWwindow* window;
 std::vector < GLfloat >* data;
@@ -108,6 +108,8 @@ int main(int argc, char * argv[] )
 	GLuint tr2 = glGetUniformLocation(programID2, "transform");
 	GLuint cos1 = glGetUniformLocation(programID1, "cos");
 	GLuint cos2 = glGetUniformLocation(programID2, "cos");
+	glEnable(GL_DEPTH_TEST);  
+	
 	do{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		
 		computeMatricesFromInputs();		

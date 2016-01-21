@@ -3,12 +3,12 @@
 in vec3 vertexPosition_modelspace;
 
 out vec3 fragmentColor;
-uniform mat4 MVP;
+uniform vec3 MVP;
 
 void main(){
 
         // Output position of the vertex, in clip space : MVP * position
-        gl_Position =  MVP * vec4(vertexPosition_modelspace[0], vertexPosition_modelspace[1], 0, 1);
+        gl_Position =  vec4((vertexPosition_modelspace[0]+MVP[0])*MVP[2], (vertexPosition_modelspace[1]+MVP[1])*MVP[2], 0, 1);
 
         fragmentColor = vec3(vertexPosition_modelspace[2],1 - vertexPosition_modelspace[2],0);
 }

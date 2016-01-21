@@ -19,11 +19,11 @@ static int size;
 // Include GLM
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Zad1.hpp>
 using namespace glm;
 
 #include "shader.hpp"
 #include "controls.hpp"
+
 void resize(int args)
 {
         GLfloat minC = 10000, maxC = -10000, minX = 10000, maxX = -10000, minY = 10000, maxY = -10000, scaleX, scaleY, scaleC, moveX, moveY;
@@ -99,18 +99,7 @@ int main(int argc, char * argv[] )
 		for(int i = 0; i < argc -1; i++)
         	loadVertex(i, argv[i+1]);
 		resize(argc-1);
-		/*data.push_back(-0.5);
-		data.push_back(-0.5);
-		data.push_back(0);
-		data.push_back(-0.5);
-		data.push_back(0.5);
-		data.push_back(0);
-		data.push_back(0.5);
-		data.push_back(0.5);
-		data.push_back(0);
-		data.push_back(0.5);
-		data.push_back(-0.5);
-		data.push_back(0);*/
+
         if( !glfwInit() )
         {
                 fprintf( stderr, "Failed to initialize GLFW\n" );
@@ -173,12 +162,10 @@ int main(int argc, char * argv[] )
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 glUseProgram(programID);
                 computeMatricesFromInputs();
-                glm::mat4 ProjectionMatrix = getProjectionMatrix();
-                glm::mat4 ViewMatrix = getViewMatrix();
-                glm::mat4 MVP = ProjectionMatrix * ViewMatrix * Model;
+                glm::vec3 cameraPos = getCameraPos();
 
 
-                glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+                glUniform3fv(MatrixID, 1, &cameraPos[0]);
 		        glEnableVertexAttribArray(0);
 
                 for(int i = 0; i < argc -1; i++){
