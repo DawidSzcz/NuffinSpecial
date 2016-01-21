@@ -1,0 +1,68 @@
+	Thu Jan 21 04:30 2016 Time and Allocation Profiling Report  (Final)
+
+	   wiezowce +RTS -p -RTS
+
+	total time  =        0.83 secs   (832 ticks @ 1000 us, 1 processor)
+	total alloc = 1,689,242,944 bytes  (excludes profiling overheads)
+
+COST CENTRE MODULE  %time %alloc
+
+makeSet     Main     19.6   21.8
+makeSet.\   Main     17.1   25.9
+makeSet.\.\ Main     16.7   13.7
+makeSet.\   Main     16.2    8.1
+fillRow     Main     11.7   19.0
+makeCols    Main      8.4    5.8
+check_aux   Main      4.4    2.4
+check       Main      3.0    2.2
+makeCols.\  Main      1.1    0.0
+
+
+                                                               individual     inherited
+COST CENTRE          MODULE                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                 MAIN                     43           0    0.0    0.0   100.0  100.0
+ CAF                 Main                     85           0    0.0    0.0   100.0  100.0
+  test7              Main                    124           1    0.0    0.0     0.0    0.0
+  test6              Main                    123           1    0.0    0.0     0.0    0.0
+  test5              Main                    122           1    0.0    0.0     0.0    0.0
+  test4              Main                    121           1    0.0    0.0     0.0    0.0
+  test3              Main                    120           1    0.0    0.0     0.0    0.0
+  test2              Main                    119           1    0.0    0.0     0.0    0.0
+  test1              Main                     89           1    0.0    0.0     0.0    0.0
+  testPack           Main                     87           1    0.0    0.0     0.0    0.0
+  main               Main                     86           1    0.0    0.0   100.0  100.0
+   wiezowce          Main                     88           7    0.4    0.3   100.0  100.0
+    wiezowce.\       Main                    116         223    0.0    0.0     0.0    0.0
+     check           Main                    117         223    0.0    0.0     0.0    0.0
+      check_aux      Main                    118        3020    0.0    0.0     0.0    0.0
+    wiezowce.\       Main                    113        1476    0.0    0.0     0.2    0.1
+     check           Main                    114        1476    0.1    0.0     0.2    0.1
+      check_aux      Main                    115       18180    0.1    0.0     0.1    0.0
+    wiezowce.\       Main                    111        2724    0.0    0.0     0.0    0.1
+     unique          Main                    112       18954    0.0    0.1     0.0    0.1
+    wiezowce.all     Main                    110           7    0.0    0.0     0.0    0.0
+    wiezowce.\       Main                    108        2724    0.0    0.0     0.2    0.1
+     unique          Main                    109       18954    0.2    0.1     0.2    0.1
+    wiezowce.cols    Main                     96           7    0.0    0.0     0.0    0.0
+     emptyCols       Main                     97          42    0.0    0.0     0.0    0.0
+    wiezowce.limits  Main                     91           7    0.0    0.0     0.0    0.0
+     boundBoard      Main                     92          42    0.0    0.0     0.0    0.0
+      boundRow       Main                     93         207    0.0    0.0     0.0    0.0
+       boundRow.row  Main                    105         172    0.0    0.0     0.0    0.0
+    makeBoard        Main                     90       35435    0.6    0.4    99.2   99.4
+     makeCols        Main                     94       34977    8.4    5.8    98.6   99.0
+      makeCols.\     Main                    104      592568    1.1    0.0     1.1    0.0
+      check          Main                    102       98837    2.9    2.2     7.2    4.5
+       check_aux     Main                    103     1152727    4.3    2.3     4.3    2.3
+      fillRow        Main                     95      946844   11.7   19.0    81.9   88.7
+       makeSet       Main                     98      848007   19.6   21.8    70.2   69.7
+        makeSet.\    Main                    107       48689    0.4    0.1     0.4    0.1
+        makeSet.x    Main                    101       38629    0.2    0.1     0.2    0.1
+        makeSet.\    Main                    100      893549   16.2    8.1    16.2    8.1
+        makeSet.\    Main                     99     2097363   17.1   25.9    33.8   39.6
+         makeSet.\.\ Main                    106     5800936   16.7   13.7    16.7   13.7
+ CAF                 GHC.IO.Handle.FD         81           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.Conc.Signal          77           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.IO.Encoding          75           0    0.0    0.0     0.0    0.0
+ CAF                 GHC.IO.Encoding.Iconv    64           0    0.0    0.0     0.0    0.0
