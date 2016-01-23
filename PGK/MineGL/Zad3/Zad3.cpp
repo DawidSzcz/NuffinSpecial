@@ -116,7 +116,11 @@ int main(int argc, char * argv[] )
 	glfwSetCursorPos(window, windowWidth/2, windowHeight/2);
 	if(makeWindow(windowWidth, windowHeight, (char*)"Zad3") == -1)
 		return -1;
+<<<<<<< HEAD
+    GLuint wTexture = bindImage("mur.png");
+=======
 	GLuint wTexture = bindImage("mur.png");
+>>>>>>> dbdf7a57dabf6158b756153edef70e1fa9bcaf46
 	GLuint texture = bindImage("floor.png");
 	GLuint mTexture = bindImage("gold.png");
 	
@@ -247,7 +251,7 @@ int main(int argc, char * argv[] )
 		
 		glBindVertexArray(VAO);		
 		glBindTexture(GL_TEXTURE_2D, texture);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         glBindVertexArray(VAOMETA);		
 		glBindTexture(GL_TEXTURE_2D, mTexture);

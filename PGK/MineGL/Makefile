@@ -12,7 +12,7 @@ Zad1: shader controls
 Zad2: shader controls2 Zad2utils
 	g++ ${FLAGS} -o Zad2/Zad2 Zad2/Zad2.cpp shader.o controls2.o utils.o ${LIBS}
 Zad3: shader utilsZ3 controlsZ3
-	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o Zad3utils.o controls.o ${LIBS} 
+	g++ ${FLAGS} -o Zad3/Zad3 Zad3/Zad3.cpp shader.o utils.o controls.o ${LIBS} 
 
 
 
@@ -29,7 +29,7 @@ Zad2utils:
 	g++ ${FLAGS} Zad2/utils.cpp -c ${LIBS}
 
 utilsZ3:
-	g++ ${FLAGS} Zad3/utils.cpp -c ${LIBS}
+	g++ ${FLAGS} -o utils.o Zad3/utils.cpp -c ${LIBS}
 
 textfile:
 	g++ ${FLAGS} SimpleTexture/textfile.cpp -c ${LIBS}

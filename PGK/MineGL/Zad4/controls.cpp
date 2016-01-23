@@ -66,7 +66,7 @@ void computeMatricesFromInputs(){
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
 
-		
+	std::cout<<"FPS: "<< 1.0/deltaTime;	
 	double mouseX, mouseY;
 	
 	mouseX = windowWidth/2;
