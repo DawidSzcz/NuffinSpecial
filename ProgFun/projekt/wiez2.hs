@@ -2,7 +2,12 @@ import Control.Monad
 import Data.List
 
 
-main = print (map length $map wiezowce testPack)
+-- zewnetrzny fold wypisuje pokolei wyniki, wewnetrzny wiersze wewnatrz 
+main = printBoard test4
+
+printBoard (w, k, n) =
+	foldr (\b bp -> foldr (\r rp-> print r >> rp) (putStr "") b >> bp ) (putStrLn "") (wiezowce test)
+	where test = (w, k, n)
 
 
 boundBoard [] _ _ _ = []
