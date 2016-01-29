@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="GObject" version="2.0"/>
+  <package name="gobject-2.0"/>
+  <namespace name="Offsets"
+             version="1.0"
+             shared-library="liboffsets.so"
+             c:identifier-prefixes="Offsets"
+             c:symbol-prefixes="offsets">
+    <record name="Array" c:type="OffsetsArray">
+      <field name="some_ints" writable="1">
+        <array zero-terminated="0" c:type="gint" fixed-size="2">
+          <type name="gint" c:type="gint"/>
+        </array>
+      </field>
+      <field name="some_int8s" writable="1">
+        <array zero-terminated="0" c:type="gint8" fixed-size="3">
+          <type name="gint8" c:type="gint8"/>
+        </array>
+      </field>
+      <field name="some_doubles" writable="1">
+        <array zero-terminated="0" c:type="gdouble" fixed-size="4">
+          <type name="gdouble" c:type="gdouble"/>
+        </array>
+      </field>
+      <field name="some_enum" writable="1">
+        <array zero-terminated="0" c:type="OffsetsEnum1" fixed-size="2">
+          <type name="Enum1" c:type="OffsetsEnum1"/>
+        </array>
+      </field>
+      <field name="some_ptrs" writable="1">
+        <array zero-terminated="0" c:type="gpointer" fixed-size="5">
+          <type name="gpointer" c:type="gpointer"/>
+        </array>
+      </field>
+    </record>
+    <record name="Basic" c:type="OffsetsBasic">
+      <field name="dummy1" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_int8" writable="1">
+        <type name="gint8" c:type="gint8"/>
+      </field>
+      <field name="dummy2" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_int16" writable="1">
+        <type name="gint16" c:type="gint16"/>
+      </field>
+      <field name="dummy3" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_int32" writable="1">
+        <type name="gint32" c:type="gint32"/>
+      </field>
+      <field name="dummy4" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_int64" writable="1">
+        <type name="gint64" c:type="gint64"/>
+      </field>
+      <field name="dummy5" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_pointer" writable="1">
+        <type name="utf8" c:type="gchar*"/>
+      </field>
+      <field name="dummy6" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_float" writable="1">
+        <type name="gfloat" c:type="gfloat"/>
+      </field>
+      <field name="dummy7" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_double" writable="1">
+        <type name="gdouble" c:type="gdouble"/>
+      </field>
+      <field name="dummy8" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_size" writable="1">
+        <type name="gsize" c:type="gsize"/>
+      </field>
+      <field name="dummy9" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field_time" writable="1">
+        <type name="glong" c:type="time_t"/>
+      </field>
+    </record>
+    <record name="Enum" c:type="OffsetsEnum">
+      <field name="enum1" writable="1">
+        <type name="Enum1" c:type="OffsetsEnum1"/>
+      </field>
+      <field name="dummy1" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="enum2" writable="1">
+        <type name="Enum2" c:type="OffsetsEnum2"/>
+      </field>
+      <field name="dummy2" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="enum3" writable="1">
+        <type name="Enum3" c:type="OffsetsEnum3"/>
+      </field>
+      <field name="dummy3" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="enum4" writable="1">
+        <type name="Enum4" c:type="OffsetsEnum4"/>
+      </field>
+      <field name="dummy4" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="enum5" writable="1">
+        <type name="Enum5" c:type="OffsetsEnum5"/>
+      </field>
+      <field name="dummy5" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="enum6" writable="1">
+        <type name="Enum6" c:type="OffsetsEnum6"/>
+      </field>
+      <field name="dummy6" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+    </record>
+    <enumeration name="Enum1" c:type="OffsetsEnum1">
+      <member name="enum_1" value="1" c:identifier="OFFSETS_ENUM_1">
+      </member>
+    </enumeration>
+    <enumeration name="Enum2" c:type="OffsetsEnum2">
+      <member name="enum_2" value="128" c:identifier="OFFSETS_ENUM_2">
+      </member>
+    </enumeration>
+    <enumeration name="Enum3" c:type="OffsetsEnum3">
+      <member name="enum_3" value="257" c:identifier="OFFSETS_ENUM_3">
+      </member>
+    </enumeration>
+    <enumeration name="Enum4" c:type="OffsetsEnum4">
+      <member name="enum_4" value="32768" c:identifier="OFFSETS_ENUM_4">
+      </member>
+    </enumeration>
+    <enumeration name="Enum5" c:type="OffsetsEnum5">
+      <member name="enum_5" value="65536" c:identifier="OFFSETS_ENUM_5">
+      </member>
+    </enumeration>
+    <enumeration name="Enum6" c:type="OffsetsEnum6">
+      <member name="enum_6" value="2147483648" c:identifier="OFFSETS_ENUM_6">
+      </member>
+    </enumeration>
+    <record name="Nested" c:type="OffsetsNested">
+      <field name="dummy1" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="nestee" writable="1">
+        <type name="Nestee" c:type="OffsetsNestee"/>
+      </field>
+      <field name="dummy2" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="nestee_union" writable="1">
+        <type name="NesteeUnion" c:type="OffsetsNesteeUnion"/>
+      </field>
+      <field name="dummy3" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+    </record>
+    <record name="Nestee" c:type="OffsetsNestee">
+      <field name="field1" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field2" writable="1">
+        <type name="gdouble" c:type="double"/>
+      </field>
+      <field name="field3" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+    </record>
+    <union name="NesteeUnion" c:type="OffsetsNesteeUnion">
+      <field name="field1" writable="1">
+        <type name="gchar" c:type="char"/>
+      </field>
+      <field name="field2" writable="1">
+        <type name="gdouble" c:type="double"/>
+      </field>
+    </union>
+    <record name="Obj" c:type="OffsetsObj">
+      <field name="parent_instance" writable="1">
+        <type name="GObject.Object" c:type="GObject"/>
+      </field>
+      <field name="other" writable="1">
+        <type name="GObject.Object" c:type="GObject*"/>
+      </field>
+    </record>
+    <record name="ObjClass" c:type="OffsetsObjClass">
+      <field name="parent_class" writable="1">
+        <type name="GObject.ObjectClass" c:type="GObjectClass"/>
+      </field>
+    </record>
+  </namespace>
+</repository>

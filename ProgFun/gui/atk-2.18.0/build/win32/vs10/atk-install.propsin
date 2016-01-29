@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="atk-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <BinDir>$(SolutionDir)$(Configuration)\$(Platform)\bin</BinDir>
+    <InstalledDlls>$(BinDir)\$(AtkDllPrefix)atk(AtkDllSuffix).dll</InstalledDlls>
+    <AtkDoInstall>
+mkdir $(CopyDir)\bin
+
+copy $(BinDir)\$(AtkDllPrefix)atk$(AtkDllSuffix).dll $(CopyDir)\bin
+copy $(BinDir)\$(AtkDllPrefix)atk$(AtkDllSuffix).pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\lib
+copy $(BinDir)\atk-$(ApiVersion).lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\include\atk-$(ApiVersion)\atk
+
+#include "atk.vs10.headers"
+    </AtkDoInstall>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="BinDir">
+      <Value>$(BinDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="InstalledDlls">
+      <Value>$(InstalledDlls)</Value>
+    </BuildMacro>
+    <BuildMacro Include="AtkDoInstall">
+      <Value>$(AtkDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
