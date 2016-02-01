@@ -1,3 +1,0 @@
-copy ..\..\..\libgail-util\gailmisc.h $(CopyDir)\include\gail-3.0\libgail-util\gailmisc.h
-copy ..\..\..\libgail-util\gailtextutil.h $(CopyDir)\include\gail-3.0\libgail-util\gailtextutil.h
-copy ..\..\..\libgail-util\gail-util.h $(CopyDir)\include\gail-3.0\libgail-util\gail-util.h

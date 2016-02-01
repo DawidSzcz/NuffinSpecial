@@ -1,4 +1,0 @@
-copy ..\..\..\gdk\broadway\gdkbroadwaydisplay.h $(CopyDir)\include\gtk-3.0\gdk\broadway\gdkbroadwaydisplay.h&#x0D;&#x0A;
-copy ..\..\..\gdk\broadway\gdkbroadwaywindow.h $(CopyDir)\include\gtk-3.0\gdk\broadway\gdkbroadwaywindow.h&#x0D;&#x0A;
-copy ..\..\..\gdk\broadway\gdkbroadwaycursor.h $(CopyDir)\include\gtk-3.0\gdk\broadway\gdkbroadwaycursor.h&#x0D;&#x0A;
-copy ..\..\..\gdk\broadway\gdkbroadwayvisual.h $(CopyDir)\include\gtk-3.0\gdk\broadway\gdkbroadwayvisual.h&#x0D;&#x0A;

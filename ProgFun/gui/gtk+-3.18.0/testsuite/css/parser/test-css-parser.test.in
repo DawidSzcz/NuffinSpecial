@@ -1,3 +1,0 @@
-[Test]
-Exec=/bin/sh -c "cd @libexecdir@/installed-tests/gtk+/css/parser && @libexecdir@/installed-tests/gtk+/css/parser/test-css-parser"
-Type=session
