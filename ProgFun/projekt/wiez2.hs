@@ -1,13 +1,65 @@
 import Control.Monad
 import Data.List
+import System.Environment
+import Data.Char
 
 
 -- zewnetrzny fold wypisuje pokolei wyniki, wewnetrzny wiersze wewnatrz 
-main = printBoard test4
+main = do
+	[f,g] <- getArgs
+	s     <- readFile f
+	let ls = lines s
+	let tests = map (\test -> parse (filter (\x -> isDigit x) test) []) ls
+	foldr (\t tp -> printResult t >> tp) (putStr "") tests
+		
 
-printBoard (w, k, n) =
-	foldr (\b bp -> foldr (\r rp-> print r >> rp) (putStr "") b >> bp ) (putStrLn "") (wiezowce test)
-	where test = (w, k, n)
+split 0 r a = (reverse r, a)
+split n (h:t) a = split (n-1) t (h:a)
+
+parse [x] a = (f, s, n)
+	where 
+		n = digitToInt x
+		(f,s) = split n a []
+parse (f:s:t) a =
+	parse t ((digitToInt f, digitToInt s):a)
+
+
+
+printRow ((l, p), row) = do
+	putStr $show l
+	putStr " "
+	putStr $show row	
+	putStr " "
+	print p
+	return ()
+
+printKol k = do
+	putStr " "
+	putStr $show k
+	return ()
+
+
+printBoard k rows = do
+	putStr "  "
+	foldr(\k kp -> printKol k >> kp) (putStrLn "") $fst (unzip k)
+	foldr(\row rp -> printRow row >> rp) (putStr "") rows
+	putStr "  "
+	foldr(\k kp -> printKol k >> kp) (putStr "") $snd (unzip k)
+	putStrLn ""
+	return ()
+
+printResult (w, k, n) = do 
+	putStrLn "Rozpoczynam test kolejny test: "
+	print test
+	putStr "Znalazłem "
+	putStr (show $length results)
+	putStrLn " wynikow"
+	foldr (\b bp -> printBoard k (zip w b) >> bp) (putStrLn "")  results
+	return ()
+	where 
+		test = (w, k, n)
+		results = wiezowce test
+
 
 
 boundBoard [] _ _ _ = []
@@ -67,7 +119,7 @@ wiezowce (w, k, n) =
 		cols = emptyCols n
 		all = sum [1..n]
 		
-makeBoard :: [(Integer, Integer)] -> [[Integer]] -> Integer -> [[Integer]] -> [[[Integer]]]	
+--makeBoard :: [(Integer, Integer)] -> [[Integer]] -> Integer -> [[Integer]] -> [[[Integer]]]	
 makeBoard [] [] _ a = [a]
 makeBoard (k:ks) (l:ls) n form=
 	do
