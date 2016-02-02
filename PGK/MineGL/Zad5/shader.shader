@@ -3,10 +3,15 @@
 License Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 Contact: tdmaav@gmail.com
 */
+
 #version 330 core
 
-in vec2 fragCoord;
 out vec4 fragColor;
+in vec2 fragCoord;
+
+uniform vec3      iResolution;           // viewport resolution (in pixels)
+uniform float     iGlobalTime;           // shader playback time (in seconds)
+uniform vec4      iMouse; 
 
 const int NUM_STEPS = 8;
 const float PI	 	= 3.1415;
@@ -139,7 +144,7 @@ vec3 getNormal(vec3 p, float eps) {
     return normalize(n);
 }
 
-float heightMapTracing(vec3 ori, vec3 dir, vec3 p) {  
+float heightMapTracing(vec3 ori, vec3 dir, out vec3 p) {  
     float tm = 0.0;
     float tx = 1000.0;    
     float hx = map(ori + dir * tx);
@@ -160,6 +165,7 @@ float heightMapTracing(vec3 ori, vec3 dir, vec3 p) {
     }
     return tmid;
 }
+
 // main
 void main() {
 	vec2 uv = fragCoord.xy / iResolution.xy;

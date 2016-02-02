@@ -3,13 +3,16 @@
 // Interpolated values from the vertex shaders
 in vec3 fragmentColor;
 
-// Ouput data
-out vec3 color;
+out vec4 fragColor;
+in vec2 fragCoord;
+uniform vec3      iResolution;           // viewport resolution (in pixels)
+uniform float     iGlobalTime;           // shader playback time (in seconds)
+uniform vec4      iMouse; 
+uniform sampler2D iChannel0;
 
 void main(){
 
-	// Output color = color specified in the vertex shader, 
-	// interpolated between all 3 surrounding vertices
-	color = fragmentColor;
+	//fragColor = vec4((fragCoord+1.)/2., 0.0, 0.0);
+	fragColor = texture(iChannel0, (fragCoord+1.)/2.);
 
 }
