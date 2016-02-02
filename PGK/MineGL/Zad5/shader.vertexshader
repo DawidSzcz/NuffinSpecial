@@ -1,0 +1,14 @@
+#version 330 core
+
+in vec3 input;
+
+out vec3 fragmentColor;
+
+void main(){
+
+        // Output position of the vertex, in clip space : MVP * position
+        gl_Position =  vec4(input, 1);
+
+        fragmentColor = vec3(1,1,1);
+}
+
