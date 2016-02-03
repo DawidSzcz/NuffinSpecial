@@ -4,9 +4,38 @@ import System.Environment
 import Data.Char
 
 
--- zewnetrzny fold wypisuje pokolei wyniki, wewnetrzny wiersze wewnatrz 
+{-
+	Program rozwiazujacy lamigłówkę wieżowce:
+
+		Łamigłówka wiezowce zdefiniowana jest w sposób nastepujacy: 
+	na planszy o wymiarach N x N , nalexy wpisywa¢ liczby o numerach o d 1 do N (odpowiadaja one
+	liczbom szesciennych klocków ustawionych na danym polu) w ten sposób, aby 
+		
+		a) w kazdym wierszu kazda liczba wystepowala dokladnie raz, 
+		b) w kazdej kolumnie kazda liczba wystep owala dokladnie raz, 
+		c) w wierszach i kolumnach bylo widac wlasciwa liczbe wiezowców. 
+
+	Dla kazdego wiersza i kazdej kolumny po dane jest, ile wiezowców wida¢ z kazdego konca: 	przykadowo dla ciagu liczb [1,3,2,5,6,4] z lewej strony wida¢ 3 slupki ( 1,3,5,6 ), a z
+	prawej tylko 2 ( 4,6) , pozostale slupki sa zasloniete 
+
+
+	Wywolanie programu -
+		./wiezowce test
+	gdzie test jest sciezka do pliku z testami zaanymi w natepujacej formie:
+
+	([ (2, 2), (1, 3), (2, 2), (3, 1)], [ (2, 2), (3, 2), (1, 2), (4, 1)], 4)
+	([ (3, 1), (1, 3), (3, 2), (2, 3)], [ (2, 2), (2, 1), (3, 2), (1, 3)], 4)
+	([ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], [ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], 5)
+	([ (2, 2), (1, 4), (2, 3), (2, 2), (3, 1)], [ (2, 3), (3, 3), (1, 4), (2, 2), (2, 1)], 5)
+	([ (2, 2), (2, 2), (3, 1), (1, 3), (3, 2)], [ (3, 2), (1, 2), (4, 1), (2, 3), (2, 2)], 5)
+	([ (1, 3), (2, 4), (3, 1), (3, 2), (3, 3), (2, 3)], [ (1, 2), (2, 4), (4, 1), (3, 2), (2, 2), (2, 3)], 6)
+	([ (2, 1), (3, 2), (2, 2), (2, 4), (1, 3), (2, 3)], [ (2, 2), (3, 3), (4, 1), (3, 2), (2, 3), (1, 3)], 6)
+
+	program przyjmuje rozmiar planszy <= 9x9
+-} 
+
 main = do
-	[f,g] <- getArgs
+	[f] <- getArgs
 	s     <- readFile f
 	let ls = lines s
 	let tests = map (\test -> parse (filter (\x -> isDigit x) test) []) ls
@@ -133,21 +162,3 @@ emptyCols n = []: emptyCols (n-1)
 unique [] a n = a == n
 unique (x:xs) a n = unique xs (x+a) n
 
-test1 = ([ (2, 2), (1, 3), (2, 2), (3, 1)], [ (2, 2), (3, 2), (1, 2), (4, 1)], 4)
-test2 = ([ (3, 1), (1, 3), (3, 2), (2, 3)], [ (2, 2), (2, 1), (3, 2), (1, 3)], 4)
-test3 = ([ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], [ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], 5)
-test4 = ([ (2, 2), (1, 4), (2, 3), (2, 2), (3, 1)], [ (2, 3), (3, 3), (1, 4), (2, 2), (2, 1)], 5)
-test5 = ([ (2, 2), (2, 2), (3, 1), (1, 3), (3, 2)], [ (3, 2), (1, 2), (4, 1), (2, 3), (2, 2)], 5)
-test6 = ([ (1, 3), (2, 4), (3, 1), (3, 2), (3, 3), (2, 3)], [ (1, 2), (2, 4), (4, 1), (3, 2), (2, 2), (2, 3)], 6)
-test7 = ([ (2, 1), (3, 2), (2, 2), (2, 4), (1, 3), (2, 3)], [ (2, 2), (3, 3), (4, 1), (3, 2), (2, 3), (1, 3)], 6)
-
-testPack = [test1, test2, test3, test4, test5, test6, test7]
-
-test8 =  ([ (2, 2), (1, 3), (2, 2), (3, 1)], [ (2, 2), (3, 2), (1, 2), (4, 1)], 4)
-test9 =  ([ (3, 1), (1, 3), (3, 2), (2, 3)], [ (2, 2), (2, 1), (3, 2), (1, 3)],4)
-test10 = ([(1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], [ (1, 3), (3, 2), (2, 3), (4, 1), (3, 2)], 5)
-test11 = ([ (2, 2), (1, 4), (2, 3), (2, 2), (3, 1)], [ (2, 3), (3, 3), (1, 4), (2, 2), (2, 1)], 5)
-test12 = ([ (2, 2), (2, 2), (3, 1), (1, 3), (3, 2)], [ (3, 2), (1, 2), (4, 1), (2, 3), (2, 2)], 5)
-test13 = ([ (1, 3), (2, 4), (3, 1), (3, 2), (3, 3), (2, 3)], [ (1, 2), (2, 4), (4, 1), (3, 2), (2, 2), (2, 3)], 6)
-test14 = ([ (2, 1), (3, 2), (2, 2), (2, 4), (1, 3), (2, 3)], [ (2, 2), (3, 3), (4, 1), (3, 2), (2, 3), (1, 3)], 6)
-test15 = ([ (2, 4), (3, 2), (1, 4), (3, 1), (2, 4), (3, 3), (3, 2), (2, 3)], [ (2, 3), (3, 3), (4, 1), (1, 3), (2, 2), (3, 2), (4, 2), (3, 2)], 8)
