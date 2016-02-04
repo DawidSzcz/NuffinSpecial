@@ -10,9 +10,11 @@ uniform float     iGlobalTime;           // shader playback time (in seconds)
 uniform vec4      iMouse; 
 uniform sampler2D iChannel0;
 
+vec2 lightpos = vec2(0.0, 0.0);
+
 void main(){
 
 	//fragColor = vec4((fragCoord+1.)/2., 0.0, 0.0);
-	fragColor = texture(iChannel0, (fragCoord+1.)/2.);
+	fragColor = (1.0- distance(fragCoord , lightpos)) *texture(iChannel0, (fragCoord+1.)/5.);
 
 }

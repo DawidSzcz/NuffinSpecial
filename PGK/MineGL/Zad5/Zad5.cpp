@@ -18,7 +18,7 @@
 
 
 GLFWwindow* window;
-int windowWidth = 1024, windowHeight = 1024;
+int windowWidth =400, windowHeight = 400;
 
 ILubyte bindImage(std::string path)
 {
@@ -147,7 +147,7 @@ std::cout<<"Wygenerowałem obrazek\n";
 	GLuint mouse = glGetUniformLocation(programID1, "iMouse");
 	GLuint time = glGetUniformLocation(programID1, "iGlobalTime");
 	GLuint channel = glGetUniformLocation(programID1, "iChannel0");
-	glm::vec3 resV = glm::vec3(0.1, 0.3, 1000.0);
+	glm::vec3 resV = glm::vec3(0.1, 1.0, 1.0);
 	float x =0.1;
 	glm::vec4 mouseV = glm::vec4(x,x,x,x);
 	//glfwSetCursorPos(window, windowWidth/2, windowHeight/2);
