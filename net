@@ -1,0 +1,104 @@
+img_size = (32, 32)
+c1_i = 3
+c1_o = 50
+c1_f = 3
+p1   = 2
+c2_o = 15
+c2_f = 3
+hidden1 = 500
+hidden2 = 300
+hidden3 = 500
+hidden4 = 300
+hidden5 = 200
+outs = 10
+gamma = 0.001
+alpha = 0.01
+lamb = 0.01
+num_epochs  = 300
+
+net = FeedForwardNet([Conv(c1_o, c1_f, "Conv1"),
+                      MaxPoolLayer(p1, "P"),
+                      Conv(c2_o, c2_f, "Conv1"),
+                      Flatten("Flatten"),
+                      AffineLayer(hidden1, gamma, "tA1"), 
+                      BNLayer(hidden1, 'BN1'),
+                      ReLULayer("ReLu"),
+                      AffineLayer(hidden2, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      TanhLayer("ReLu"),
+                      AffineLayer(hidden3, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      TanhLayer("ReLu"),
+                      AffineLayer(hidden4, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      TanhLayer("ReLu"),
+                      AffineLayer(hidden5, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      TanhLayer("ReLu"),
+                      AffineLayer(outs, gamma, "tA"), 
+                      SoftMaxLayer("fSoftMax")], alpha, lamb)
+net.build((c1_i, ) + img_size)
+print "Start"
+print "gamma: ", gamma
+print "alpha: ", alpha
+i = 0
+e = 0
+
+#Noise
+u = Uniform(width=0.05)
+while e < num_epochs:
+    t0 = time.time()
+    for X, Y in cifar10_train_stream.get_epoch_iterator():
+        pr ,c,a, = net.trainFunction(X + u.generate(numpy.random, X.shape), Y.ravel()) #
+        i+=1
+        if i % 100 == 0:
+            print c, (pr  != Y.ravel()).mean()
+    t1 = time.time()
+    print "After epoch: ", e, compute_er(net, cifar10_validation_stream), "time: ", t1-t0
+    e+=1
+    
+    
+    20 -> 40%
+    27 -> 39
+    
+    img_size = (32, 32)
+c1_i = 3
+c1_o = 60
+c1_f = 4
+p1   = 3
+c2_o = 30
+c2_f = 4
+hidden1 = 800
+hidden2 = 800
+hidden3 = 1000
+hidden4 = 300
+hidden5 = 200
+outs = 10
+gamma = 0.001
+alpha = 0.01
+lamb = 0.1
+num_epochs  = 300
+
+net = FeedForwardNet([Conv(c1_o, c1_f, "Conv1"),
+                      MaxPoolLayer(p1, "P"),
+                      Conv(c2_o, c2_f, "Conv1"),
+                      Flatten("Flatten"),
+                      AffineLayer(hidden1, gamma, "tA1"), 
+                      ReLULayer("ReLu"),
+                      AffineLayer(hidden2, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      ReLULayer("ReLu"),
+                      AffineLayer(hidden3, gamma, "tA"),
+                      BNLayer(hidden5, 'BN2'),
+                      ReLULayer("ReLu"),
+                      AffineLayer(hidden4, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      ReLULayer("ReLu"),
+                      AffineLayer(hidden5, gamma, "tA"),
+                      #BNLayer(hidden4, 'BN2'),
+                      ReLULayer("ReLu"),
+                      AffineLayer(outs, gamma, "tA"), 
+                      SoftMaxLayer("fSoftMax")], alpha, lamb)
+net.build((c1_i, ) + img_size)
+
+12->40%
